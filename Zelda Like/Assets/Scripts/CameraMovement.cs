@@ -9,6 +9,17 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector2 _maxPosition;
     [SerializeField] private Vector2 _minPosition;
 
+    public Vector2 MaxPosition
+    {
+        get => _maxPosition;
+        set => _maxPosition = value;
+    } 
+    public Vector2 MinPosition
+    {
+        get => _minPosition;
+        set => _minPosition = value;
+    }
+
     private void FixedUpdate()
     {
         if (transform.position != _target.position)
@@ -19,8 +30,17 @@ public class CameraMovement : MonoBehaviour
             targetPosition.x = Mathf.Clamp(targetPosition.x, _minPosition.x, _maxPosition.x);
             targetPosition.y = Mathf.Clamp(targetPosition.y, _minPosition.y, _maxPosition.y);
             transform.position = Vector3.Lerp(transform.position, targetPosition, _smoothing);
-            
-            
         }
     }
+
+    public void SetMinPosition(Vector2 value)
+    {
+        _minPosition = value;
+    }
+
+    public void SetMaxValue(Vector2 value)
+    {
+        _maxPosition = value;
+    }
+    
 }
